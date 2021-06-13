@@ -31,25 +31,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
     
-    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
-        /*
-         <scheme>://<host>
-         starbucks://home
-         starbucks://scan
-         */
-        //proccess url
-        let components = NSURLComponents(url: url, resolvingAgainstBaseURL: true)
-        let host = components?.host ?? ""
-        print("componets \(components) host \(host)")
-        
-        // create the deep link
-        let deepLink = DeepLink(rawValue: host) ?? .empty
-        
-        if let topVC = UIApplication.getTopViewController() as? MainViewController {
-            topVC.handleDeepLink(deepLink)
-        }
-        
-        return true
-    }
 }
 
